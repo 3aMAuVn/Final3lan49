@@ -1,0 +1,239 @@
+// ─────────────────────────────────────────────────────────────────
+// _hero-banner.scss
+// Responsive starry-night hero for Magic Math Master
+// ─────────────────────────────────────────────────────────────────
+
+// ── Keyframes ────────────────────────────────────────────────────
+@keyframes mmm-twinkle {
+  0%,  100% { opacity: 0.32; filter: brightness(0.96); }
+  35%       { opacity: 0.88; filter: brightness(1.10); }
+  65%       { opacity: 0.54; filter: brightness(1.00); }
+}
+
+// ── Section shell ─────────────────────────────────────────────────
+.mmm-hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 16% -20%, rgba(37, 82, 193, 0.14), transparent 32%),
+    radial-gradient(circle at 84%   0%, rgba(48, 92, 220, 0.11), transparent 28%),
+    linear-gradient(180deg, #000b35 0%, #071851 100%);
+  color: #fff;
+  padding-bottom: 0;          // pills sit flush at the bottom
+}
+
+// ── Star-field overlay ────────────────────────────────────────────
+.mmm-hero__sky {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+// ── Main content row ──────────────────────────────────────────────
+.mmm-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: auto 1fr auto;   // [logo] [copy] [hat]
+  align-items: center;
+  gap: 0 clamp(18px, 3vw, 48px);
+  padding-top:    clamp(24px, 4vw, 52px);
+  padding-bottom: clamp(20px, 3.5vw, 44px);
+}
+
+// ── Logo (left) ───────────────────────────────────────────────────
+.mmm-hero__logo {
+  display: block;
+  width:  clamp(90px, 16vw, 300px);
+  height: clamp(90px, 16vw, 300px);
+  object-fit: contain;
+  filter: drop-shadow(0 8px 14px rgba(0,0,0,0.22));
+  flex-shrink: 0;
+}
+
+// ── Copy (centre) ─────────────────────────────────────────────────
+.mmm-hero__copy {
+  min-width: 0;
+}
+
+.mmm-hero__kicker {
+  margin: 0 0 8px;
+  color: rgba(255,255,255,.72);
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-size: .75rem;
+  font-weight: 900;
+}
+
+.mmm-hero__title {
+  margin: 0 0 clamp(6px, 1.2vw, 14px);
+  font-size: clamp(1.9rem, 6.5vw, 7.5rem);
+  line-height: 0.92;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: #ee8f2c;          // banner orange
+  font-family: "Arial Black", "Trebuchet MS", Arial, sans-serif;
+  text-shadow:
+    0 4px 0   rgba(0,0,0,0.38),
+    0 10px 18px rgba(0,0,0,0.22);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  // Allow wrapping only below 480 px
+  @media (max-width: 479px) {
+    white-space: normal;
+    font-size: clamp(1.5rem, 9vw, 2.4rem);
+    line-height: 1;
+  }
+}
+
+// ── Coloured subtitle tags ────────────────────────────────────────
+.mmm-hero__subs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(4px, 0.8vw, 11px);
+  margin-bottom: clamp(8px, 1.5vw, 18px);
+  font-family: "Arial Black", "Trebuchet MS", Arial, sans-serif;
+  font-weight: 900;
+  font-size: clamp(0.7rem, 2.1vw, 2rem);
+  white-space: nowrap;
+  text-shadow:
+    -1px 0 #000, 1px 0 #000,
+    0 -1px #000, 0 1px #000;
+}
+
+.mmm-sub--1 { color: #ffad62; }
+.mmm-sub--2 { color: #68d6ff; }
+.mmm-sub--3 { color: #b6a6ff; }
+.mmm-sub-dot {
+  color: #fff;
+  font-size: 0.65em;
+  opacity: .9;
+}
+
+// ── Optional subtitle paragraph ──────────────────────────────────
+.mmm-hero__subtitle {
+  margin: 0 0 clamp(8px, 1.4vw, 16px);
+  font-size: clamp(.88rem, 1.4vw, 1.1rem);
+  color: rgba(255,255,255,.86);
+  max-width: 620px;
+  line-height: 1.55;
+}
+
+// ── CTA buttons ───────────────────────────────────────────────────
+.mmm-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(8px, 1.2vw, 14px);
+  margin-top: clamp(8px, 1.5vw, 18px);
+}
+
+// ── Hat logo (top-right corner) ───────────────────────────────────
+.mmm-hero__hat {
+  display: block;
+  width:  clamp(56px, 8vw, 120px);
+  height: clamp(56px, 8vw, 120px);
+  object-fit: contain;
+  align-self: flex-start;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.20));
+  flex-shrink: 0;
+}
+
+// ── Feature pills row (home page only) ───────────────────────────
+.mmm-hero__pills {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(180px, 22vw, 360px), 1fr));
+  gap: clamp(6px, 1vw, 12px);
+  padding-bottom: clamp(16px, 2.5vw, 32px);
+  padding-top: clamp(4px, 0.6vw, 8px);
+}
+
+.mmm-pill {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1.2vw, 16px);
+  background: var(--pill-bg);
+  border: 2px solid rgba(255,255,255,.88);
+  border-radius: clamp(12px, 2vw, 28px);
+  padding: clamp(6px, 1vw, 10px) clamp(10px, 1.5vw, 18px);
+  color: #0c2137;
+  box-shadow: 0 4px 10px rgba(0,0,0,.10);
+}
+
+.mmm-pill__icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width:  clamp(28px, 4vw, 54px);
+  height: clamp(28px, 4vw, 54px);
+  border-radius: 50%;
+  background: var(--pill-icon-bg);
+  border: 2px solid rgba(255,255,255,.90);
+  color: #fff;
+  font-size: clamp(0.85rem, 1.8vw, 1.6rem);
+  font-weight: 900;
+}
+
+.mmm-pill__text {
+  font-size: clamp(0.72rem, 1.4vw, 1.4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+}
+
+// ─── Tablet tweaks (600 – 900 px) ────────────────────────────────
+@media (max-width: 900px) {
+  .mmm-hero__inner {
+    grid-template-columns: auto 1fr;  // hat moves to after copy
+    grid-template-rows: auto auto;
+  }
+  .mmm-hero__hat {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    align-self: start;
+  }
+  .mmm-hero__copy {
+    grid-column: 2;
+    grid-row: 1 / 3;
+  }
+  .mmm-hero__logo {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+}
+
+// ─── Mobile (< 520 px) ───────────────────────────────────────────
+@media (max-width: 519px) {
+  .mmm-hero__inner {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  .mmm-hero__logo {
+    width: 72px;
+    height: 72px;
+    align-self: flex-start;
+    margin-top: 4px;
+  }
+  .mmm-hero__hat {
+    display: none;   // too cramped on phones
+  }
+  .mmm-hero__subs {
+    font-size: clamp(0.62rem, 3.5vw, 0.85rem);
+  }
+  // Pills collapse to a compact 2-col grid on small screens
+  .mmm-hero__pills {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .mmm-pill__text {
+    font-size: 0.68rem;
+  }
+}
